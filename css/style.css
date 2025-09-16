@@ -123,7 +123,62 @@ header {
     font-weight: bold;
     box-shadow: var(--shadow-md);
 }
+/* Logo Styles */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
 
+.logo-img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-main {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-primary-dark);
+    font-family: 'Playfair Display', serif;
+}
+
+.logo-sub {
+    font-size: 0.9rem;
+    color: var(--color-gray);
+}
+
+/* Responsive adjustments for logo */
+@media (max-width: 768px) {
+    .logo-img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .logo-main {
+        font-size: 1.5rem;
+    }
+    
+    .logo-sub {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo-text {
+        display: none; /* Ocultar texto en móviles muy pequeños */
+    }
+    
+    .logo-img {
+        width: 45px;
+        height: 45px;
+    }
+}
 .logo-text {
     display: flex;
     flex-direction: column;
