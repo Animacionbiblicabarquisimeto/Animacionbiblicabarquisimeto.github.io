@@ -256,7 +256,34 @@ Así, la Palabra de Dios se convierte en el corazón de todo, ayudando a los par
             </div>
         </div>
     </section>
-
+    
+  <!-- Calendar Section - MODIFICADO PARA GOOGLE CALENDAR -->
+    <section id="calendario" class="calendar-section">
+        <div class="container">
+            <div class="section-title-center">
+                <h2>Calendario de Eventos</h2>
+                <p>Próximas actividades y eventos de ABAB</p>
+            </div>
+            
+            <div class="calendar-container">
+                <div class="calendar-options">
+                    <button class="calendar-btn active" data-view="month">Vista Mensual</button>
+                    <button class="calendar-btn" data-view="agenda">Vista de Agenda</button>
+                    <a href="#" class="btn btn-outline" id="subscribe-btn">
+                        <i class="fas fa-calendar-plus"></i> Suscribirse al Calendario
+                    </a>
+                </div>
+                
+                <!-- Contenedor para el calendario de Google -->
+                <div id="google-calendar" class="google-calendar-container">
+                    <div class="loading-calendar">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Cargando calendario...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Documents -->
     <section class="documents" id="documentos">
         <div class="container">
@@ -380,5 +407,7 @@ Así, la Palabra de Dios se convierte en el corazón de todo, ayudando a los par
     </footer>
 
     <script src="js/script.js"></script>
+       <!-- Añadimos la API de Google Calendar -->
+    <script src="https://apis.google.com/js/api.js"></script>
 </body>
 </html>
