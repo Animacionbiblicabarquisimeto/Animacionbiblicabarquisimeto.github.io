@@ -257,7 +257,7 @@ Así, la Palabra de Dios se convierte en el corazón de todo, ayudando a los par
         </div>
     </section>
     
-  <!-- Calendar Section - MODIFICADO PARA GOOGLE CALENDAR -->
+ <!-- Calendar Section - ACTUALIZADO CON GOOGLE CALENDAR -->
     <section id="calendario" class="calendar-section">
         <div class="container">
             <div class="section-title-center">
@@ -269,17 +269,22 @@ Así, la Palabra de Dios se convierte en el corazón de todo, ayudando a los par
                 <div class="calendar-options">
                     <button class="calendar-btn active" data-view="month">Vista Mensual</button>
                     <button class="calendar-btn" data-view="agenda">Vista de Agenda</button>
-                    <a href="#" class="btn btn-outline" id="subscribe-btn">
-                        <i class="fas fa-calendar-plus"></i> Suscribirse al Calendario
+                    <a href="https://calendar.google.com/calendar/embed?src=ce46abf4c99a6b5697860752f4a30d35ebf90d5a748d4cd59512a791937646de%40group.calendar.google.com&ctz=America%2FCaracas" 
+                       class="btn btn-outline" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> Ver en Google Calendar
                     </a>
                 </div>
                 
                 <!-- Contenedor para el calendario de Google -->
                 <div id="google-calendar" class="google-calendar-container">
-                    <div class="loading-calendar">
-                        <i class="fas fa-spinner fa-spin"></i>
-                        <p>Cargando calendario...</p>
-                    </div>
+                    <iframe 
+                        src="https://calendar.google.com/calendar/embed?src=ce46abf4c99a6b5697860752f4a30d35ebf90d5a748d4cd59512a791937646de%40group.calendar.google.com&ctz=America%2FCaracas" 
+                        style="border: 0" 
+                        width="100%" 
+                        height="100%" 
+                        frameborder="0" 
+                        scrolling="no">
+                    </iframe>
                 </div>
             </div>
         </div>
