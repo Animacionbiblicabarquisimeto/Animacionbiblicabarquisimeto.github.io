@@ -23,6 +23,7 @@ if (faqItems.length > 0) {
     });
 }
 
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
@@ -99,4 +100,94 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', animateOnScroll);
     // Trigger once on load in case elements are already in view
     animateOnScroll();
+});
+
+// ... (código existente previo)
+
+// Google Calendar Integration
+const initGoogleCalendar = () => {
+    const calendarContainer = document.getElementById('google-calendar');
+    const loadingElement = calendarContainer.querySelector('.loading-calendar');
+    const viewButtons = document.querySelectorAll('.calendar-btn');
+    const subscribeBtn = document.getElementById('subscribe-btn');
+    
+    // ID público del calendario de Google (debes reemplazarlo con el ID real)
+    const CALENDAR_ID = 'ce46abf4c99a6b5697860752f4a30d35ebf90d5a748d4cd59512a791937646de@group.calendar.google.com';
+    const API_KEY = 'AIzaSyA0MXtQfM1gCT4ARdKkGJnSLQFJQ_r-2yY'; // Necesitarás obtener una API key de Google
+    
+    // Función para cambiar la vista del calendario
+    const changeCalendarView = (view) => {
+        // Limpiar el contenedor
+        calendarContainer.innerHTML = '<div class="loading-calendar"><i class="fas fa-spinner fa-spin"></i><p>Cargando calendario...</p></div>';
+        
+        // Crear iframe con la vista seleccionada
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://calendar.google.com/calendar/embed?src=ce46abf4c99a6b5697860752f4a30d35ebf90d5a748d4cd59512a791937646de%40group.calendar.google.com&ctz=America%2FCaracas`;
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.frameBorder = '0';
+        iframe.scrolling = 'no';
+        
+        // Reemplazar loading con el iframe cuando cargue
+        iframe.onload = () => {
+            calendarContainer.innerHTML = '';
+            calendarContainer.appendChild(iframe);
+        };
+        
+        // Actualizar botones activos
+        viewButtons.forEach(btn => {
+            if (btn.dataset.view === view) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    };
+    
+    // Configurar botones de vista
+    viewButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const view = button.dataset.view;
+            changeCalendarView(view);
+        });
+    });
+    
+    // Configurar botón de suscripción
+    subscribeBtn.href = `https://calendar.google.com/calendar/embed?src=${encodeURIComponent(CALENDAR_ID)}&ctz=America%2FCaracas`;
+    
+    // Cargar vista inicial
+    changeCalendarView('month');
+    
+    // Alternativa: Cargar calendario usando la API de Google (más complejo pero más control)
+    // loadCalendarWithAPI();
+};
+
+// Función alternativa para cargar el calendario usando la API de Google
+// (Requiere configuración adicional con API key)
+const loadCalendarWithAPI = () => {
+    // Esta implementación requiere una API key de Google y habilitar la API de Calendar
+    // Es más compleja pero ofrece más control sobre la visualización
+    console.log("Cargando calendario con API...");
+    // La implementación completa dependería de tus necesidades específicas
+};
+
+// ... (resto del código existente)
+
+// Modificar el event listener DOMContentLoaded para incluir el calendario
+document.addEventListener('DOMContentLoaded', () => {
+    const animatedElements = document.querySelectorAll('.mv-card, .obj-card, .pastoral-card');
+    
+    animatedElements.forEach(element => {
+        element.style.opacity = 0;
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    });
+    
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll();
+    
+    setupDownloadNotifications();
+    
+    // Inicializar el calendario de Google
+    initGoogleCalendar();
 });
