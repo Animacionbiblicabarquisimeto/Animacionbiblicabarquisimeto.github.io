@@ -102,37 +102,28 @@ document.addEventListener('DOMContentLoaded', () => {
     animateOnScroll();
 });
 
-// ... (código existente previo)
-
 // Google Calendar Integration
 const initGoogleCalendar = () => {
     const calendarContainer = document.getElementById('google-calendar');
-    const loadingElement = calendarContainer.querySelector('.loading-calendar');
     const viewButtons = document.querySelectorAll('.calendar-btn');
-    const subscribeBtn = document.getElementById('subscribe-btn');
+    const subscribeLink = document.getElementById('subscribe-link');
     
-    // ID público del calendario de Google (debes reemplazarlo con el ID real)
+    // ID del calendario de Google
     const CALENDAR_ID = 'ce46abf4c99a6b5697860752f4a30d35ebf90d5a748d4cd59512a791937646de@group.calendar.google.com';
-    const API_KEY = 'AIzaSyA0MXtQfM1gCT4ARdKkGJnSLQFJQ_r-2yY'; // Necesitarás obtener una API key de Google
     
     // Función para cambiar la vista del calendario
     const changeCalendarView = (view) => {
-        // Limpiar el contenedor
-        calendarContainer.innerHTML = '<div class="loading-calendar"><i class="fas fa-spinner fa-spin"></i><p>Cargando calendario...</p></div>';
+        let src = `https://calendar.google.com/calendar/embed?src=${encodeURIComponent(CALENDAR_ID)}&ctz=America%2FCaracas`;
         
-        // Crear iframe con la vista seleccionada
-        const iframe = document.createElement('iframe');
-        iframe.src = `https://calendar.google.com/calendar/embed?src=ce46abf4c99a6b5697860752f4a30d35ebf90d5a748d4cd59512a791937646de%40group.calendar.google.com&ctz=America%2FCaracas`;
-        iframe.style.width = '100%';
-        iframe.style.height = '100%';
-        iframe.frameBorder = '0';
-        iframe.scrolling = 'no';
+        if (view === 'agenda') {
+            src += '&mode=AGENDA';
+        } else {
+            src += '&mode=MONTH';
+        }
         
-        // Reemplazar loading con el iframe cuando cargue
-        iframe.onload = () => {
-            calendarContainer.innerHTML = '';
-            calendarContainer.appendChild(iframe);
-        };
+        // Actualizar el iframe
+        const iframe = calendarContainer.querySelector('iframe');
+        iframe.src = src;
         
         // Actualizar botones activos
         viewButtons.forEach(btn => {
@@ -152,23 +143,16 @@ const initGoogleCalendar = () => {
         });
     });
     
-    // Configurar botón de suscripción
-    subscribeBtn.href = `https://calendar.google.com/calendar/embed?src=${encodeURIComponent(CALENDAR_ID)}&ctz=America%2FCaracas`;
+    // Configurar enlace de suscripción
+    subscribeLink.href = `webcal://calendar.google.com/calendar/ical/${encodeURIComponent(CALENDAR_ID)}/public/basic.ics`;
     
-    // Cargar vista inicial
-    changeCalendarView('month');
-    
-    // Alternativa: Cargar calendario usando la API de Google (más complejo pero más control)
-    // loadCalendarWithAPI();
-};
-
-// Función alternativa para cargar el calendario usando la API de Google
-// (Requiere configuración adicional con API key)
-const loadCalendarWithAPI = () => {
-    // Esta implementación requiere una API key de Google y habilitar la API de Calendar
-    // Es más compleja pero ofrece más control sobre la visualización
-    console.log("Cargando calendario con API...");
-    // La implementación completa dependería de tus necesidades específicas
+    // Detectar clic en el enlace de suscripción
+    subscribeLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Mostrar instrucciones de suscripción
+        alert('Para suscribirte a este calendario:\n\n1. Abre Google Calendar en tu computadora\n2. Haz clic en el signo "+" junto a "Otros calendarios"\n3. Selecciona "Desde URL"\n4. Pega esta URL: ' + subscribeLink.href + '\n5. Haz clic en "Agregar calendario"');
+    });
 };
 
 // ... (resto del código existente)
