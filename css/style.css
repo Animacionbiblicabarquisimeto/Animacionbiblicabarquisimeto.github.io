@@ -134,7 +134,7 @@ header {
     color: var(--color-gray);
 }
 
-/* Calendar Section */
+/* Estilos para el calendario de Google */
 .calendar-options {
     display: flex;
     justify-content: center;
@@ -171,20 +171,6 @@ header {
     min-height: 400px;
 }
 
-.loading-calendar {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: var(--color-primary);
-}
-
-.loading-calendar i {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
 .calendar-instructions {
     background-color: var(--color-light);
     padding: 1.5rem;
@@ -208,8 +194,6 @@ header {
         max-width: 250px;
     }
 }
-
-
 /* Responsive adjustments for logo */
 @media (max-width: 768px) {
     .logo-img {
